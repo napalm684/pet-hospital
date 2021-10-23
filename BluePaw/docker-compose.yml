@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  configserver:
+    image: "steeltoeoss/config-server:3"
+    command: --spring.profiles.active=native --spring.cloud.config.server.native.searchLocations=/config
+    volumes:
+      - type: bind
+        source: ./config
+        target: /config
+    ports:
+      - "8888:8888"
