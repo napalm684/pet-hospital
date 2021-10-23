@@ -3,3 +3,10 @@ RabbitMq:
   Port: 5672
   Username: guest
   Password: guest
+mysql:
+  client:
+    database: bluepawdb
+    server: localhost
+    port: 3306
+    username: bluepawadmin
+    password: "m@n5b3stfr13nd"
