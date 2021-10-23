@@ -1,13 +1,17 @@
+using System;
+using BluePaw.Administration.Data;
 using BluePaw.Administration.Listeners;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Steeltoe.Connector.MySql;
-using Steeltoe.Connector.RabbitMQ;
 using Steeltoe.Messaging.RabbitMQ.Extensions;
+using Steeltoe.Connector.MySql.EFCore;
 
 namespace BluePaw.Administration
 {
@@ -23,10 +27,17 @@ namespace BluePaw.Administration
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddMySqlConnection(Configuration);
-            //services.AddRabbitMQConnection(Configuration);
+            services.AddMySqlConnection(Configuration);
+            services.AddDbContext<BluePawDbContext>(options =>
+                options.UseMySql(Configuration), ServiceLifetime.Transient);
             services.AddRabbitServices();
             services.AddSingleton<PatientRequestsListener>();
+            services.AddSingleton<Func<BluePawDbContext>>(() =>
+            {
+                var optionsBuilder = new DbContextOptionsBuilder<BluePawDbContext>();
+                optionsBuilder.UseMySql(Configuration);
+                return new BluePawDbContext(optionsBuilder.Options);
+            });
             services.AddRabbitListeners<PatientRequestsListener>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -45,7 +56,6 @@ namespace BluePaw.Administration
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BluePaw.Administration v1"));
             }
 
-            app.UseHttpsRedirection();
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {

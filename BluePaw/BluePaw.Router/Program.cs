@@ -13,7 +13,7 @@ namespace BluePaw.Router
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-            RabbitMQHost.CreateDefaultBuilder()
+            RabbitMQHost.CreateDefaultBuilder(args)
                 .AddConfigServer()
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
     }

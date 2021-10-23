@@ -51,7 +51,7 @@ namespace BluePaw.Router
             });
         }
 
-        private void EventBrokerSetup(IServiceCollection services)
+        private static void EventBrokerSetup(IServiceCollection services)
         {
             services.AddRabbitExchange(PatientRequestsExchange, ExchangeType.DIRECT);
 

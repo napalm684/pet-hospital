@@ -15,3 +15,18 @@ services:
     ports:
       - 5672:5672
       - 15672:15672
+  bluepawdb:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'bluepawdb'
+      MYSQL_USER: 'bluepawadmin'
+      MYSQL_PASSWORD: 'm@n5b3stfr13nd'
+      MYSQL_ROOT_PASSWORD: 'i@mgr00t'
+    ports:
+      - 3306:3306
+    volumes:
+      - bluepawdb:/var/lib/mysql
+
+volumes:
+  bluepawdb:
