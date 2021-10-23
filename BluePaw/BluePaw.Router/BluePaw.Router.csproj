@@ -11,6 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Steeltoe.Messaging.RabbitMQ" Version="3.1.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.*" />
   </ItemGroup>
 
@@ -18,6 +19,10 @@
     <PackageReference Include="RabbitMQ.Client" Version="5.1.*" />
     <PackageReference Include="Steeltoe.Connector.ConnectorCore" Version="$(SteeltoeVersion)" />
     <PackageReference Include="Steeltoe.Extensions.Configuration.ConfigServerCore" Version="$(SteeltoeVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BluePaw.Shared\BluePaw.Shared.csproj" />
   </ItemGroup>
 
 </Project>
