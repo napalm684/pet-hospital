@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Steeltoe.Connector.RabbitMQ;
 using Steeltoe.Messaging.RabbitMQ.Config;
 using Steeltoe.Messaging.RabbitMQ.Extensions;
 
@@ -51,8 +52,10 @@ namespace BluePaw.Router
             });
         }
 
-        private static void EventBrokerSetup(IServiceCollection services)
+        private void EventBrokerSetup(IServiceCollection services)
         {
+            services.ConfigureRabbitOptions(Configuration);
+
             services.AddRabbitExchange(PatientRequestsExchange, ExchangeType.DIRECT);
 
             services.AddRabbitQueue(new Queue(AdminQueue));

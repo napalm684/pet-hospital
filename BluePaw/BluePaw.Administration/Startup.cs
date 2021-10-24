@@ -31,6 +31,7 @@ namespace BluePaw.Administration
             services.AddDbContext<BluePawDbContext>(options =>
                 options.UseMySql(Configuration), ServiceLifetime.Transient);
             services.AddRabbitServices();
+            services.ConfigureRabbitOptions(Configuration);
             services.AddSingleton<PatientRequestsListener>();
             services.AddSingleton<Func<BluePawDbContext>>(() =>
             {
