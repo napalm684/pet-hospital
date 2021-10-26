@@ -1,2 +1,4 @@
 adminsvc:
   url: http://localhost:5000
+router:
+  url: http://localhost:5100

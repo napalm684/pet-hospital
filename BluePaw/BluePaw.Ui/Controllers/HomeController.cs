@@ -2,9 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using BluePaw.Shared;
 using BluePaw.Ui.Services;
@@ -24,22 +22,38 @@ namespace BluePaw.Ui.Controllers
 
         public async Task<IActionResult> Index()
         {
-            //TODO: Temp testing
-            await _administrationService.CreatePatient(new CreatePatientRequest
-            {
-                OwnerName = "Shawn Vause",
-                OwnerPhone = "111-111-1111",
-                Species = "Canine",
-                Name = "Doc"
-            });
-            return View();
+            var requests = await _administrationService.RetrieveRequests();
+            return View(requests);
         }
 
-        public IActionResult Laboratory()
+        public IActionResult Create()
         {
+            ViewData["species"] = new[]
+            {
+                "Dog",
+                "Cat",
+                "Other"
+            };
             return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Create(CreatePatientRequest createRequest)
+        {
+            _logger.LogInformation($"Creating patient in administration service: {createRequest.Name}");
+            
+            try
+            {
+                await _administrationService.CreatePatient(createRequest);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Unable to create patient!");
+                return RedirectToAction("Error");
+            }
+        }
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

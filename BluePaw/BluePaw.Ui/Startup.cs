@@ -21,6 +21,7 @@ namespace BluePaw.Ui
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton(s => RestService.For<IAdministrationService>(Configuration["adminsvc:url"]));
+            services.AddSingleton(s => RestService.For<IRequestRouter>(Configuration["router:url"]));
             services.AddControllersWithViews();
         }
 
