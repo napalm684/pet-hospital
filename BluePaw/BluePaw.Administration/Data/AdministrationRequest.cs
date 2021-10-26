@@ -15,8 +15,10 @@ namespace BluePaw.Administration.Data
         [Column("create_time")]
         public DateTime CreateTime { get; set; }
 
+        [Column("request")]
         public string Request { get; set; }
 
+        [Column("completed")]
         public bool Completed { get; set; }
     }
 }

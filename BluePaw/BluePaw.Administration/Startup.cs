@@ -56,6 +56,12 @@ namespace BluePaw.Administration
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BluePaw.Administration v1"));
             }
 
+            using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<BluePawDbContext>();
+                context.Database.EnsureCreated();
+            }
+
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {

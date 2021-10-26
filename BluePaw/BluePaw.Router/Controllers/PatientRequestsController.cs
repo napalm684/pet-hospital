@@ -15,7 +15,7 @@ namespace BluePaw.Router.Controllers
         private readonly ILogger<PatientRequestsController> _logger;
         private readonly RabbitTemplate _rabbitTemplate;
 
-        public PatientRequestsController(ILogger<PatientRequestsController> logger, RabbitTemplate rabbitTemplate, RabbitAdmin rabbitAdmin)
+        public PatientRequestsController(ILogger<PatientRequestsController> logger, RabbitTemplate rabbitTemplate)
         {
             _logger = logger;
             _rabbitTemplate = rabbitTemplate;
