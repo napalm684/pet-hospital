@@ -1,5 +1,3 @@
-using System;
-
 namespace BluePaw.Ui.Models
 {
     public class ErrorViewModel

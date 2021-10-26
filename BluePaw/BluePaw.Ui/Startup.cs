@@ -20,8 +20,8 @@ namespace BluePaw.Ui
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton(s => RestService.For<IAdministrationService>(Configuration["adminsvc:url"]));
-            services.AddSingleton(s => RestService.For<IRequestRouter>(Configuration["router:url"]));
+            services.AddSingleton(_ => RestService.For<IAdministrationService>(Configuration["adminsvc:url"]));
+            services.AddSingleton(_ => RestService.For<IRequestRouter>(Configuration["router:url"]));
             services.AddControllersWithViews();
         }
 

@@ -16,6 +16,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BluePaw.Administration", "B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluePaw.Ui", "BluePaw.Ui\BluePaw.Ui.csproj", "{72CD87AD-829C-444B-8FA8-2D38A2FA20E7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluePaw.Router.Tests", "BluePaw.Router.Tests\BluePaw.Router.Tests.csproj", "{B2646785-B952-4E62-9D4B-CFDBAD6D8237}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestUtilities", "TestUtilities\TestUtilities.csproj", "{1D167AA8-BCA0-43F4-8C3A-7D833D01B956}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +42,14 @@ Global
 		{72CD87AD-829C-444B-8FA8-2D38A2FA20E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72CD87AD-829C-444B-8FA8-2D38A2FA20E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72CD87AD-829C-444B-8FA8-2D38A2FA20E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2646785-B952-4E62-9D4B-CFDBAD6D8237}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2646785-B952-4E62-9D4B-CFDBAD6D8237}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2646785-B952-4E62-9D4B-CFDBAD6D8237}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2646785-B952-4E62-9D4B-CFDBAD6D8237}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D167AA8-BCA0-43F4-8C3A-7D833D01B956}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D167AA8-BCA0-43F4-8C3A-7D833D01B956}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D167AA8-BCA0-43F4-8C3A-7D833D01B956}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D167AA8-BCA0-43F4-8C3A-7D833D01B956}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

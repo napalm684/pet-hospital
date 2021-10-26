@@ -1,7 +1,6 @@
-﻿using System.Text.Json;
+﻿using System;
+using BluePaw.Router.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Steeltoe.Messaging.RabbitMQ.Core;
 using BPShared = BluePaw.Shared;
 
 namespace BluePaw.Router.Controllers
@@ -10,28 +9,25 @@ namespace BluePaw.Router.Controllers
     [Route("[controller]")]
     public class PatientRequestsController : ControllerBase
     {
-        private const string PatientRequestsExchange = "patient_requests";
+        private readonly IMessagePublisherService _messagePublisherService;
 
-        private readonly ILogger<PatientRequestsController> _logger;
-        private readonly RabbitTemplate _rabbitTemplate;
-
-        public PatientRequestsController(ILogger<PatientRequestsController> logger, RabbitTemplate rabbitTemplate)
+        public PatientRequestsController(IMessagePublisherService messagePublisherService)
         {
-            _logger = logger;
-            _rabbitTemplate = rabbitTemplate;
+            _messagePublisherService = messagePublisherService;
         }
 
         [HttpPost]
         public IActionResult Create(BPShared.Envelope envelope)
         {
-            var destination = envelope.ReceivingDepartment;
-            var sender = envelope.SendingDepartment;
-
-            _logger.LogInformation($"Patient request received from {sender} bound for {destination}");
-            _rabbitTemplate.ConvertAndSend(PatientRequestsExchange, 
-                destination, JsonSerializer.Serialize(envelope.Request));
-
-            return NoContent();
+            try
+            {
+                _messagePublisherService.PublishPatientRequest(envelope);
+                return NoContent();
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
         }
     }
 }

@@ -1,3 +1,4 @@
+using BluePaw.Router.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -60,14 +61,12 @@ namespace BluePaw.Router
         private void EventBrokerSetup(IServiceCollection services)
         {
             services.ConfigureRabbitOptions(Configuration);
-
             services.AddRabbitExchange(PatientRequestsExchange, ExchangeType.DIRECT);
-
             services.AddRabbitQueue(new Queue(AdminQueue));
-
             services.AddRabbitBindings(
                 BindingBuilder.Bind(new Queue(AdminQueue)).To(new DirectExchange(PatientRequestsExchange))
                     .With(AdminDepartmentName));
+            services.AddSingleton<IMessagePublisherService, MessagePublisherService>();
         }
     }
 }
