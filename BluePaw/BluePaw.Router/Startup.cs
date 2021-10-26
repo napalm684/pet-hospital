@@ -4,9 +4,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Steeltoe.Connector.RabbitMQ;
+using Steeltoe.Management.Endpoint;
+using Steeltoe.Management.Endpoint.Health;
+using Steeltoe.Management.Tracing;
 using Steeltoe.Messaging.RabbitMQ.Config;
-using Steeltoe.Messaging.RabbitMQ.Core;
 using Steeltoe.Messaging.RabbitMQ.Extensions;
 
 namespace BluePaw.Router
@@ -27,9 +28,11 @@ namespace BluePaw.Router
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHealthActuator(Configuration);
             EventBrokerSetup(services);
 
             services.AddControllers();
+            services.AddDistributedTracing();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BluePaw.Router", Version = "v1" });
@@ -49,6 +52,7 @@ namespace BluePaw.Router
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
+                endpoints.Map<HealthEndpoint>();
                 endpoints.MapControllers();
             });
         }
@@ -64,14 +68,6 @@ namespace BluePaw.Router
             services.AddRabbitBindings(
                 BindingBuilder.Bind(new Queue(AdminQueue)).To(new DirectExchange(PatientRequestsExchange))
                     .With(AdminDepartmentName));
-
-            // Create queue
-            var rabbitAdmin = services.BuildServiceProvider()?.GetService<RabbitAdmin>();
-            var info = rabbitAdmin?.GetQueueInfo(AdminQueue);
-            if (info == null)
-            {
-                rabbitAdmin?.DeclareQueue(new Queue(AdminQueue));
-            }
         }
     }
 }

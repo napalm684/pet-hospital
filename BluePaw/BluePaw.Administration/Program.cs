@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Steeltoe.Extensions.Configuration.ConfigServer;
+using Steeltoe.Management.Endpoint;
+using Steeltoe.Extensions.Logging;
+using Steeltoe.Messaging.RabbitMQ.Host;
 
 namespace BluePaw.Administration
 {
@@ -13,8 +16,12 @@ namespace BluePaw.Administration
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
+            RabbitMQHost.CreateDefaultBuilder(args)
                 .AddConfigServer(LoggerFactory.Create(builder => builder.AddConsole()))
+                .AddHealthActuator()
+                .AddInfoActuator()
+                .AddLoggersActuator()
+                .AddDynamicLogging()
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
     }
 }
