@@ -10,6 +10,7 @@ services:
         target: /config
     ports:
       - "8888:8888"
+  
   rabbitmq:
     image: "rabbitmq:3-management-alpine"
     ports:
@@ -17,6 +18,8 @@ services:
       - 15672:15672
     depends_on:
       - configserver
+        
+  
   bluepawdb:
     image: mysql:5.7
     restart: always
@@ -31,6 +34,7 @@ services:
       - bluepawdb:/var/lib/mysql
     depends_on:
       - configserver
+  
   router:
     build:
       context: ./
@@ -42,6 +46,7 @@ services:
       - configserver
       - rabbitmq
       - bluepawdb
+  
   administration:
     build:
       context: ./
@@ -49,6 +54,19 @@ services:
     restart: always
     ports:
       - 5000:5000
+    depends_on:
+      - configserver
+      - rabbitmq
+      - bluepawdb
+      - router
+        
+  bluepawui:
+    build:
+      context: ./
+      dockerfile: ./BluePaw.Ui/Dockerfile
+    restart: always
+    ports:
+      - 5200:5200
     depends_on:
       - configserver
       - rabbitmq

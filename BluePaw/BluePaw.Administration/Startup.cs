@@ -45,6 +45,7 @@ namespace BluePaw.Administration
                 optionsBuilder.UseMySql(Configuration);
                 return new BluePawDbContext(optionsBuilder.Options);
             });
+            CreateMessageQueue(services);
             services.AddRabbitListeners<PatientRequestsListener>();
             services.AddControllers();
             services.AddDistributedTracing();
@@ -69,21 +70,25 @@ namespace BluePaw.Administration
                 var context = scope.ServiceProvider.GetRequiredService<BluePawDbContext>();
                 context.Database.EnsureCreated();
             }
-            
-            // Create queue
-            var rabbitAdmin = app.ApplicationServices.GetRequiredService<RabbitAdmin>();
-            var info = rabbitAdmin?.GetQueueInfo(AdminQueue);
-            if (info == null)
-            {
-                rabbitAdmin?.DeclareQueue(new Queue(AdminQueue));
-            }
-            
+
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.Map<HealthEndpoint>();
                 endpoints.MapControllers();
             });
+        }
+
+        private void CreateMessageQueue(IServiceCollection services)
+        {
+            var sp = services.BuildServiceProvider();
+            
+            var rabbitAdmin = sp.GetRequiredService<RabbitAdmin>();
+            var info = rabbitAdmin?.GetQueueInfo(AdminQueue);
+            if (info == null)
+            {
+                rabbitAdmin?.DeclareQueue(new Queue(AdminQueue));
+            }
         }
     }
 }
