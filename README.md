@@ -7,4 +7,4 @@ A simple demonstration of microservices architecture utilizing a variety of back
 
 ## Architecture
 
-![Architecture Diagram](images/bluepaw.jpeg)
+![Architecture Diagram](/images/bluepaw.jpeg)
