@@ -37,6 +37,8 @@ namespace BluePaw.Ui.Controllers
         {
             _logger.LogInformation($"Administrative request for patient id {patientRequest.PatientId} created");
 
+            //Note: In a production application we should validate input.
+            
             try
             {
                 await _router.CreateRequest(new Envelope

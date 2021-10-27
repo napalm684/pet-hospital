@@ -19,6 +19,8 @@ namespace BluePaw.Router.Controllers
         [HttpPost]
         public IActionResult Create(BPShared.Envelope envelope)
         {
+            //Note: In a production application we should validate input.
+            
             try
             {
                 _messagePublisherService.PublishPatientRequest(envelope);

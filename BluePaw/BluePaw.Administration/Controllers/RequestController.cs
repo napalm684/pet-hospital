@@ -21,6 +21,8 @@ namespace BluePaw.Administration.Controllers
         [Route("all")]
         public IEnumerable<PatientRequest> Requests()
         {
+            //Note: In a production application we should validate input.
+            
             return _dbContext.AdministrationRequests.Select(r =>
                 new PatientRequest
                 {

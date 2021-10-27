@@ -42,6 +42,8 @@ namespace BluePaw.Ui.Controllers
         {
             _logger.LogInformation($"Creating patient in administration service: {createRequest.Name}");
             
+            //Note: In a production application we should validate input.
+            
             try
             {
                 await _administrationService.CreatePatient(createRequest);

@@ -56,6 +56,9 @@ namespace BluePaw.Administration.Controllers
         public IActionResult Create(CreatePatientRequest request)
         {
             _logger.LogInformation($"Creating new patient {request.Name} for owner {request.OwnerName}");
+            
+            //Note: In a production application we should validate input.
+            
             var patient = new Patient
             {
                 Name = request.Name,

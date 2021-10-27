@@ -18,8 +18,7 @@ services:
       - 15672:15672
     depends_on:
       - configserver
-        
-  
+
   bluepawdb:
     image: mysql:5.7
     restart: always
