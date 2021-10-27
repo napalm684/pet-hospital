@@ -1,0 +1,4 @@
+adminsvc:
+  url: http://administration:5000
+router:
+  url: http://router:5100

@@ -1,0 +1,13 @@
+spring:
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: guest
+    password: guest
+mysql:
+  client:
+    database: bluepawdb
+    server: bluepawdb
+    port: 3306
+    username: bluepawadmin
+    password: "m@n5b3stfr13nd"

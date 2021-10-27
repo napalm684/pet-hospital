@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoFixture" Version="4.17.0" />
+      <PackageReference Include="AutoFixture.AutoFakeItEasy" Version="4.17.0" />
+      <PackageReference Include="AutoFixture.Xunit2" Version="4.17.0" />
+      <PackageReference Include="FakeItEasy" Version="7.2.0" />
+      <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\BluePaw.Shared\BluePaw.Shared.csproj" />
+    </ItemGroup>
+
+</Project>
