@@ -1,0 +1,76 @@
+version: '3.8'
+
+services:
+  configserver:
+    image: "steeltoeoss/config-server:3"
+    command: --spring.profiles.active=native --spring.cloud.config.server.native.searchLocations=/config
+    volumes:
+      - type: bind
+        source: ./config
+        target: /config
+    ports:
+      - "8888:8888"
+  
+  rabbitmq:
+    image: "rabbitmq:3-management-alpine"
+    ports:
+      - 5672:5672
+      - 15672:15672
+    depends_on:
+      - configserver
+
+  bluepawdb:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'bluepawdb'
+      MYSQL_USER: 'bluepawadmin'
+      MYSQL_PASSWORD: 'm@n5b3stfr13nd'
+      MYSQL_ROOT_PASSWORD: 'i@mgr00t'
+    ports:
+      - 3306:3306
+    volumes:
+      - bluepawdb:/var/lib/mysql
+    depends_on:
+      - configserver
+  
+  router:
+    build:
+      context: ./
+      dockerfile: ./BluePaw.Router/Dockerfile
+    restart: always
+    ports:
+      - 5100:5100
+    depends_on:
+      - configserver
+      - rabbitmq
+      - bluepawdb
+  
+  administration:
+    build:
+      context: ./
+      dockerfile: ./BluePaw.Administration/Dockerfile
+    restart: always
+    ports:
+      - 5000:5000
+    depends_on:
+      - configserver
+      - rabbitmq
+      - bluepawdb
+      - router
+        
+  bluepawui:
+    build:
+      context: ./
+      dockerfile: ./BluePaw.Ui/Dockerfile
+    restart: always
+    ports:
+      - 5200:5200
+    depends_on:
+      - configserver
+      - rabbitmq
+      - bluepawdb
+      - router
+
+volumes:
+  bluepawdb:

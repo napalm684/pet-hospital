@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BluePaw.Router", "BluePaw.Router\BluePaw.Router.csproj", "{48199ACD-0A98-4405-AB22-6067473EB908}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C3E90EFA-66EF-4C1E-B284-479272EEF28D}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BluePaw.Shared", "BluePaw.Shared\BluePaw.Shared.csproj", "{42870138-F3AE-474A-910E-943C59D5D1F8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BluePaw.Administration", "BluePaw.Administration\BluePaw.Administration.csproj", "{160586AA-EEAA-4255-97FE-1816D9377DF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluePaw.Ui", "BluePaw.Ui\BluePaw.Ui.csproj", "{72CD87AD-829C-444B-8FA8-2D38A2FA20E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluePaw.Router.Tests", "BluePaw.Router.Tests\BluePaw.Router.Tests.csproj", "{B2646785-B952-4E62-9D4B-CFDBAD6D8237}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestUtilities", "TestUtilities\TestUtilities.csproj", "{1D167AA8-BCA0-43F4-8C3A-7D833D01B956}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{48199ACD-0A98-4405-AB22-6067473EB908}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48199ACD-0A98-4405-AB22-6067473EB908}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48199ACD-0A98-4405-AB22-6067473EB908}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48199ACD-0A98-4405-AB22-6067473EB908}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42870138-F3AE-474A-910E-943C59D5D1F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42870138-F3AE-474A-910E-943C59D5D1F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42870138-F3AE-474A-910E-943C59D5D1F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42870138-F3AE-474A-910E-943C59D5D1F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{160586AA-EEAA-4255-97FE-1816D9377DF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{160586AA-EEAA-4255-97FE-1816D9377DF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{160586AA-EEAA-4255-97FE-1816D9377DF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{160586AA-EEAA-4255-97FE-1816D9377DF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72CD87AD-829C-444B-8FA8-2D38A2FA20E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72CD87AD-829C-444B-8FA8-2D38A2FA20E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72CD87AD-829C-444B-8FA8-2D38A2FA20E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72CD87AD-829C-444B-8FA8-2D38A2FA20E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2646785-B952-4E62-9D4B-CFDBAD6D8237}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2646785-B952-4E62-9D4B-CFDBAD6D8237}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2646785-B952-4E62-9D4B-CFDBAD6D8237}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2646785-B952-4E62-9D4B-CFDBAD6D8237}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D167AA8-BCA0-43F4-8C3A-7D833D01B956}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D167AA8-BCA0-43F4-8C3A-7D833D01B956}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D167AA8-BCA0-43F4-8C3A-7D833D01B956}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D167AA8-BCA0-43F4-8C3A-7D833D01B956}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4D72E631-5453-4DF2-81A0-35EEDA87FADE}
+	EndGlobalSection
+EndGlobal
