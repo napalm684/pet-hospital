@@ -39,8 +39,6 @@ namespace BluePaw.Administration.Listeners
 
                 dbContext.SaveChanges();
             }
-            
-            //TODO: Dead-letter
         }
     }
 }
